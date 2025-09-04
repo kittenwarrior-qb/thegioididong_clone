@@ -1,0 +1,50 @@
+@import "tailwindcss";
+
+a {
+  text-decoration: none;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: #f2f4f7;
+}
+
+
+
+
+.custom-tabs .ant-tabs-nav-list {
+  display: flex;
+  justify-content: space-between; 
+  width: 100%;
+  gap: none;
+}
+
+.custom-tabs .ant-tabs-tab {
+  margin: 0 !important; 
+  flex: 1;              
+  justify-content: center; 
+  background-color: transparent;
+  border-radius: 8px;
+  padding: 20px 30px;
+  transition: none;
+}
+.custom-tabs .ant-tabs-tab-active {
+  background-color: #fff6e3;
+}
+
+.custom-tabs .ant-tabs-tab-active .ant-tabs-tab-btn {
+  color: black !important;
+  font-weight: 600;
+}
+
+.custom-tabs .ant-tabs-tab-btn:hover {
+  color: inherit !important; 
+}
+
+.custom-tabs .ant-tabs-ink-bar {
+  background-color: #f79009 !important;
+  height: 3px;
+  border-radius: 2px;
+  transition: none;
+}
