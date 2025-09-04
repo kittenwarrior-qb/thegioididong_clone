@@ -20,14 +20,47 @@ import Angle_Icon from "../assets/tgdd/imgi_68_icon_angle-left.png";
 import Location from "./Location";
 
 const categories = [
-  { id: 1, name: "Điện thoại", icon: Phone_Icon, angle: true, children: ["iPhone", "Samsung", "Xiaomi", "OPPO"] },
-  { id: 2, name: "Laptop", icon: Laptop_Icon, children: ["Macbook", "Asus", "Lenovo", "HP"] },
-  { id: 3, name: "Phụ kiện", icon: Asset_Icon, children: ["Tai nghe", "Sạc dự phòng", "Ốp lưng", "Cáp sạc"] },
-  { id: 4, name: "Smartwatch", icon: SmartWatch_Icon, angle: true, children: ["Apple Watch", "Samsung Watch", "Huawei Watch"] },
+  {
+    id: 1,
+    name: "Điện thoại",
+    icon: Phone_Icon,
+    angle: true,
+    children: ["iPhone", "Samsung", "Xiaomi", "OPPO"],
+  },
+  {
+    id: 2,
+    name: "Laptop",
+    icon: Laptop_Icon,
+    children: ["Macbook", "Asus", "Lenovo", "HP"],
+  },
+  {
+    id: 3,
+    name: "Phụ kiện",
+    icon: Asset_Icon,
+    children: ["Tai nghe", "Sạc dự phòng", "Ốp lưng", "Cáp sạc"],
+  },
+  {
+    id: 4,
+    name: "Smartwatch",
+    icon: SmartWatch_Icon,
+    angle: true,
+    children: ["Apple Watch", "Samsung Watch", "Huawei Watch"],
+  },
   { id: 5, name: "Đồng hồ", icon: Watch_Icon },
-  { id: 6, name: "Tablet", icon: Tablet_Icon, children: ["iPad", "Samsung Tab", "Xiaomi Pad"] },
+  {
+    id: 6,
+    name: "Tablet",
+    icon: Tablet_Icon,
+    children: ["iPad", "Samsung Tab", "Xiaomi Pad"],
+  },
   { id: 7, name: "Máy cũ, Thu cũ", icon: Old_Icon },
-  { id: 8, name: "Màn hình", icon: PC_Icon, angle: true, children: ["Màn hình LG", "Màn hình Dell", "Máy in Canon", "Máy in HP"] },
+  {
+    id: 8,
+    name: "Màn hình",
+    icon: PC_Icon,
+    angle: true,
+    children: ["Màn hình LG", "Màn hình Dell", "Máy in Canon", "Máy in HP"],
+  },
   { id: 9, name: "Sim", icon: Sim_Icon },
   { id: 10, name: "Dịch vụ", icon: Service_Icon },
 ];
@@ -45,8 +78,9 @@ const Header = () => {
 
   return (
     <div className="sticky top-0 z-50">
+      {/* Top banner */}
       <div
-        className={`bg-[#143130] h-[44px] overflow-hidden transition-all duration-300`}
+        className={`bg-[#143130] overflow-hidden transition-all duration-300`}
         style={{
           opacity: isScrolled ? 0 : 1,
           height: isScrolled ? "0px" : "44px",
@@ -55,6 +89,7 @@ const Header = () => {
         <img
           src={TopBanner}
           className="w-full max-w-[1200px] mx-auto h-[44px] object-cover"
+          alt="top-banner"
         />
       </div>
 
@@ -66,24 +101,25 @@ const Header = () => {
               width={228}
               height={40}
               className="flex-shrink-0"
+              alt="logo"
             />
 
-            <div className="flex items-center bg-white rounded-full px-3 w-full md:max-w-[400px] h-[40px] ">
-              <img src={SearchIcon} width={17} height={17} />
+            <div className="flex items-center bg-white rounded-full px-3 w-full md:max-w-[400px] h-[40px]">
+              <img src={SearchIcon} width={17} height={17} alt="search" />
               <input
                 type="text"
                 placeholder="iphone 16 series"
-                className="outline-none h-full bg-transparent flex-1 px-3 placeholder:text-[12px] text-[12p]"
+                className="outline-none h-full bg-transparent flex-1 px-3 placeholder:text-[12px] text-[12px]"
               />
             </div>
 
-            <div className="flex items-center gap-3 md:gap-6 w-full ">
-              <div className="flex items-center gap-1 cursor-pointer hover:opacity-80 hover:bg-[#ffe565] py-3 px-1 rounded-full">
-                <img src={UserIcon} width={24} height={24} />
-                <p className="text-[14px] hidden md:block ">Đăng nhập</p>
+            <div className="flex items-center gap-2 md:gap-6 w-full md:w-auto mt-2 md:mt-0">
+              <div className="flex items-center gap-1 cursor-pointer hover:opacity-80 hover:bg-[#ffe565] py-2 px-2 rounded-full">
+                <img src={UserIcon} width={24} height={24} alt="user" />
+                <p className="text-[14px] hidden md:block">Đăng nhập</p>
               </div>
-              <div className="flex items-center gap-1 cursor-pointer hover:opacity-80 hover:bg-[#ffe565] py-3 px-1 rounded-full">
-                <img src={CartIcon} width={24} height={24} />
+              <div className="flex items-center gap-1 cursor-pointer hover:opacity-80 hover:bg-[#ffe565] py-2 px-2 rounded-full">
+                <img src={CartIcon} width={24} height={24} alt="cart" />
                 <p className="text-[14px] hidden md:block">Giỏ hàng</p>
               </div>
               <Location />
@@ -92,14 +128,14 @@ const Header = () => {
         </div>
 
         <div
-          className={`overflow-hidden transition-all duration-300`}
+          className={`overflow-x-auto transition-all duration-300 hidden sm:block`}
           style={{
             opacity: isScrolled ? 0 : 1,
-            height: isScrolled ? "0px" : "44px", 
+            height: isScrolled ? "0px" : "44px",
           }}
         >
-          <div className=" px-2 max-w-[1200px] md:mx-auto">
-            <div className="flex gap-4 md:gap-6 justify-between overflow-x-auto">
+          <div className="px-2 max-w-[1200px] md:mx-auto">
+            <div className="flex gap-2 md:gap-6 justify-start md:justify-between overflow-x-auto">
               {categories.map((cat) => {
                 const menuItems =
                   cat.children?.map((child) => ({
@@ -116,19 +152,25 @@ const Header = () => {
                     arrow
                     disabled={!cat.children}
                   >
-                    <div className="flex items-center cursor-pointer hover:bg-[#ffe565] gap-1 rounded-t-lg px-1 py-3">
+                    <div className="flex items-center cursor-pointer hover:bg-[#ffe565] gap-1 rounded-t-lg px-2 py-2 whitespace-nowrap">
                       <div className="flex items-center gap-1">
-                        <img src={cat.icon} width={24} height={24} />
+                        <img
+                          src={cat.icon}
+                          width={24}
+                          height={24}
+                          alt={cat.name}
+                        />
                         {cat.angle && (
                           <img
                             src={Angle_Icon}
                             width={16}
                             height={16}
                             className="rotate-270"
+                            alt="angle"
                           />
                         )}
                       </div>
-                      <span className="text-[14px] text-center">{cat.name}</span>
+                      <span className="text-[14px]">{cat.name}</span>
                     </div>
                   </Dropdown>
                 );

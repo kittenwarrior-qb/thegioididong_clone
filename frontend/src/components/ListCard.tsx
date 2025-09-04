@@ -98,27 +98,28 @@ const ListCard = ({ title, tab = true, tabKey, img }: ListCardProps) => {
         {banner && (
           <img
             src={banner}
-            className="w-full rounded-lg object-cover py-3 px-4"
+            className="w-full rounded-lg object-cover p-4"
             alt="banner"
           />
         )}
 
         {img ? (
-          <div className="grid grid-cols-6 gap-4">
-            <div className="col-span-2 flex items-center justify-center">
+          <div className="grid grid-cols-1 md:grid-cols-6 gap-4">
+            <div className="md:col-span-2 flex items-center justify-center">
               <img
                 src={img}
                 className="w-full h-full object-cover rounded-lg"
               />
             </div>
-            <div className="col-span-4 grid grid-cols-4 gap-4">
+
+            <div className="md:col-span-4 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
               {list.slice(0, 4).map((p) => (
                 <ProductCard key={p.id} product={p} />
               ))}
             </div>
           </div>
         ) : (
-          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4">
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4">
             {list.slice(0, 12).map((p) => (
               <ProductCard key={p.id} product={p} />
             ))}

@@ -1,7 +1,7 @@
 const Footer = () => {
     return (
         <div className="bg-white mt-8">
-            <div className="max-w-[1200px] mx-auto py-6 text-sm text-gray-700">
+            <div className="max-w-[1200px] mx-auto py-6 text-sm text-gray-700 p-4 lg:p-0">
                 <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
                     <div>
                         <h3 className="font-bold mb-2">Tổng đài hỗ trợ</h3>
@@ -59,7 +59,7 @@ const Footer = () => {
                 </div>
 
             </div>
-            <div className="bg-[#f1f1f1]">
+            <div className="bg-[#f1f1f1]  p-4 lg:p-0">
 
                 <div className="max-w-[1200px] mx-auto text-xs text-gray-500 mt-6 pt-4">
                     © 2018. Công ty cổ phần Thế Giới Di Động. GPĐKKD: 0303217354 do sở KH & ĐT TP.HCM
