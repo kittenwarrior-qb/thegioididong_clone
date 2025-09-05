@@ -144,9 +144,9 @@ const ListCard = ({ title, tab = true, tabKey, img }: ListCardProps) => {
   }));
 
   return (
-    <div className="max-w-[1200px] mx-auto my-6">
+    <div className="max-w-[1200px] mx-auto mt-10 mb-6">
       <h2 className="text-[24px] font-bold mb-4">{title}</h2>
-      <div className="bg-white rounded-2xl p-1">
+      <div className="bg-white rounded-2xl">
         {tab ? (
           <Tabs
             activeKey={activeKey}

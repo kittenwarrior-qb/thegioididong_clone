@@ -23,7 +23,6 @@ const categories = [
     id: 1,
     name: "Điện thoại",
     icon: Phone_Icon,
-    angle: true,
     children: ["iPhone", "Samsung", "Xiaomi", "OPPO"],
   },
   {
@@ -37,12 +36,13 @@ const categories = [
     name: "Phụ kiện",
     icon: Asset_Icon,
     children: ["Tai nghe", "Sạc dự phòng", "Ốp lưng", "Cáp sạc"],
+    angle: true,
+
   },
   {
     id: 4,
     name: "Smartwatch",
     icon: SmartWatch_Icon,
-    angle: true,
     children: ["Apple Watch", "Samsung Watch", "Huawei Watch"],
   },
   { id: 5, name: "Đồng hồ", icon: Watch_Icon },
@@ -52,7 +52,7 @@ const categories = [
     icon: Tablet_Icon,
     children: ["iPad", "Samsung Tab", "Xiaomi Pad"],
   },
-  { id: 7, name: "Máy cũ, Thu cũ", icon: Old_Icon },
+  { id: 7, name: "Máy cũ, Thu cũ", icon: Old_Icon, angle: true },
   {
     id: 8,
     name: "Màn hình, Máy in",
@@ -60,8 +60,8 @@ const categories = [
     angle: true,
     children: ["Màn hình LG", "Màn hình Dell", "Máy in Canon", "Máy in HP"],
   },
-  { id: 9, name: "Sim, Thẻ cào", icon: Sim_Icon },
-  { id: 10, name: "Dịch vụ tiện ích", icon: Service_Icon },
+  { id: 9, name: "Sim, Thẻ cào", icon: Sim_Icon, angle: true },
+  { id: 10, name: "Dịch vụ tiện ích", icon: Service_Icon, angle: true },
 ];
 
 const Header = () => {
@@ -93,7 +93,7 @@ const Header = () => {
       </div>
 
       <div className="bg-[#ffd500] ">
-        <div className="sticky top-0 z-50 bg-[#ffd500] pt-2 pb-1">
+        <div className="sticky top-0 z-50 bg-[#ffd500] pt-2">
           <div className="max-w-[1200px] mx-auto flex flex-col md:flex-row justify-between items-center md:p-0 ">
             <img
               src={LogoImg}
@@ -131,8 +131,8 @@ const Header = () => {
             height: isScrolled ? "0px" : "44px",
           }}
         >
-          <div className="px-2 max-w-[1200px] md:mx-auto">
-            <div className="flex justify-between max-w-[1200px] overflow-hidden  ">
+          <div className="px-2 max-w-[1240px] md:mx-auto">
+            <div className="flex justify-between w-[1240px]  overflow-hidden  ">
               {categories.map((cat) => {
                 const menuItems =
                   cat.children?.map((child) => ({

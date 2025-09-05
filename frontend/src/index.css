@@ -8,10 +8,17 @@ body {
   margin: 0;
   padding: 0;
   background-color: #f2f4f7;
+      font-family: 'HelveticaCustom', sans-serif;
+
 }
 
 
-
+  @font-face {
+    font-family: 'Helvetica';
+    src: url('./assets/helvetica/Helvetica.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+  }
 
 .custom-tabs .ant-tabs-nav-list {
   display: flex;
@@ -26,8 +33,9 @@ body {
   justify-content: center; 
   background-color: transparent;
   border-radius: 8px;
-  padding: 20px 30px;
+  padding: 0px 25px;
   transition: none;
+  height: 60px;
 }
 .custom-tabs .ant-tabs-tab-active {
   background-color: #fff6e3;
