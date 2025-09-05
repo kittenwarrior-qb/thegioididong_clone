@@ -1,8 +1,9 @@
 import logo4 from '../assets/tgdd/logo4.png'
 import { useEffect, useState, useRef } from "react";
 import io from "socket.io-client";
+const socketUrl = import.meta.env.VITE_SOCKET_URL;
 
-const socket = io("http://localhost:4000", { withCredentials: true });
+const socket = io(socketUrl, { withCredentials: true });
 
 interface Message {
   user: "user" | "admin";
