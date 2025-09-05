@@ -6,7 +6,6 @@ interface BlogItem {
   img: string;
 }
 
-// Hàm chunk để chia mảng thành từng nhóm 4 phần tử
 const chunkArray = (arr: BlogItem[], size: number) => {
   const result: BlogItem[][] = [];
   for (let i = 0; i < arr.length; i += size) {

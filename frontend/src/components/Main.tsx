@@ -1,6 +1,7 @@
 import AdBanner from "./adBanner";
 import CarouselBanner from "./CarouselBanner";
 import CarouselBlog from "./CarouselBlog";
+import ChatBot from "./chatBot";
 import Footer from "./Footer";
 import Header from "./Header";
 import ListCard from "./ListCard";
@@ -50,6 +51,7 @@ const Main = () => {
       </div>
       <CarouselBlog/>
       <Search/>
+      <ChatBot/>
       <Footer/>
     </div>
   );

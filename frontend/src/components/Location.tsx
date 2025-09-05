@@ -82,7 +82,7 @@ const Location = () => {
           fetchProvinces();
           setOpen(true);
         }}
-        className="cursor-pointer flex items-center gap-2 text-sm bg-[#ffe14c] p-3 w-full md:max-w-[300px] rounded-full hover:bg-[#fff0a2]"
+        className="cursor-pointer flex items-center gap-2 text-sm bg-[#ffe14c] p-3 w-full md:max-w-[300px] rounded-full h-[42px] hover:bg-[#fff0a2]"
       >
         <img src={LocationIcon} alt="location" width={20} height={20} />
         <span className="truncate max-w-[150px]">{displayText}</span>
