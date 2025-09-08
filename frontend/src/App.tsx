@@ -1,11 +1,24 @@
-import Main from "./components/Main"
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import HomePage from "./pages/HomePage";
+import CartPage from "./pages/CartPage";
+import DetailPage from "./pages/DetailPage";
+import Header from "./components/Header";
+import Footer from "./components/Footer";
 
 const App = () => {
   return (
-    <div className="">
-      <Main/>
-    </div>
-  )
-}
+    <Router>
+      <Header/>
+      <Routes>
+        <Route path="/" element={<HomePage/>} />
 
-export default App
+        <Route path="/cart" element={<CartPage />} />
+
+        <Route path="/detail/:id" element={<DetailPage />} />
+      </Routes>
+      <Footer/>
+    </Router>
+  );
+};
+
+export default App;

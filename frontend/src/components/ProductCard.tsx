@@ -1,6 +1,7 @@
 import { Card, Tag, Progress } from "antd";
 import { type Product } from "../types/product";
 import { StarFilled } from "@ant-design/icons";
+import { Link } from "react-router-dom";
 
 interface ProductCardProps {
   product: Product;
@@ -33,6 +34,7 @@ const ProductCard = ({ product }: ProductCardProps) => {
     : null;
 
   return (
+    <Link to={`/detail/${product.id}`}>
     <Card
       className="relative rounded-lg"
       cover={
@@ -132,6 +134,7 @@ const ProductCard = ({ product }: ProductCardProps) => {
 )}
 
     </Card>
+    </Link>
   );
 };
 

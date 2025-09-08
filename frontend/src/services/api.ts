@@ -31,13 +31,26 @@ export const ApiService = {
         products = products.filter((p) => !p.flashSaleCount);
       }
 
-      // Pagination thủ công
       const start = (page - 1) * limit;
       const end = start + limit;
       return products.slice(start, end);
     } catch (error) {
       console.error(`Lỗi fetch products cho tab ${tabKey}:`, error);
       return [];
+    }
+  },
+
+  getProductById: async (id: number): Promise<Product | null> => {
+    try {
+      const res = await fetch(DATA_JSON);
+      const data = await res.json();
+      const products: Product[] = cleanProducts(data.products || []);
+
+      const found = products.find((p) => p.id === id);
+      return found || null;
+    } catch (error) {
+      console.error(`Lỗi fetch product id=${id}:`, error);
+      return null;
     }
   },
 

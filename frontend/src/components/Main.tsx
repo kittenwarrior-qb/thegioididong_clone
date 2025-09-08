@@ -1,23 +1,15 @@
 import { useState, useEffect } from "react";
+import { Skeleton } from "antd";
 import AdBanner from "./adBanner";
 import CarouselBanner from "./CarouselBanner";
 import CarouselBlog from "./CarouselBlog";
 import ChatBot from "./chatBot";
-import Footer from "./Footer";
-import Header from "./Header";
 import ListCard from "./ListCard";
 import Search from "./Search";
 
 const Main = () => {
   const [listCards, setListCards] = useState([
-    { title: "Khuyến mãi Online", tab: true },
-    { title: "Gợi ý cho bạn", tab: false, tabKey: "Điện thoại" },
-    {
-      title: "Sản phẩm đặc quyền",
-      tab: false,
-      tabKey: "Điện thoại",
-      img: "https://cdnv2.tgdd.vn/mwg-static/tgdd/Banner/85/b0/85b0e362b56d952013af81b6388d7e4a.png",
-    },
+    { title: "Laptop mới nhất", tab: false, tabKey: "Laptop" },
   ]);
   const [loading, setLoading] = useState(false);
 
@@ -26,17 +18,17 @@ const Main = () => {
     const windowHeight = window.innerHeight;
     const fullHeight = document.body.scrollHeight;
 
-    if (scrollTop + windowHeight + 100 >= fullHeight && !loading) {
+    if (scrollTop + windowHeight + 400 >= fullHeight && !loading) {
       setLoading(true);
       setTimeout(() => {
         const newCard = {
-          title: "Lab top mới nhất",
+          title: "Tablet mới nhất",
           tab: false,
           tabKey: "Laptop",
         };
         setListCards((prev) => [...prev, newCard]);
         setLoading(false);
-      }, 1000);
+      }, 1200);
     }
   };
 
@@ -45,23 +37,20 @@ const Main = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, [loading]);
 
-  const footerCards = [
-    { title: "Đồng hồ thông minh", tab: false, tabKey: "Đồng hồ thông minh" },
-    { title: "Máy in", tab: false, tabKey: "Máy in" },
-    { title: "Phụ kiện", tab: false, tabKey: "Phụ kiện tablet" },
-    { title: "Đồng hồ", tab: false, tabKey: "Đồng hồ thông minh" },
-  ];
-
   return (
     <div>
-      <Header />
       <AdBanner />
-
-      {listCards.map((card, idx) => (
-        <ListCard key={idx} {...card} />
-      ))}
+      <ListCard title="Khuyến mãi Online" tab={true} />
+      <ListCard title="Gợi ý cho bạn" tab={false} tabKey="Điện thoại" />
 
       <CarouselBanner />
+
+      <ListCard
+        title="Sản phẩm đặc quyền"
+        tab={false}
+        tabKey="Điện thoại"
+        img="https://cdnv2.tgdd.vn/mwg-static/tgdd/Banner/85/b0/85b0e362b56d952013af81b6388d7e4a.png"
+      />
 
       <div className="mx-auto max-w-[1200px] my-8">
         <p className="text-[24px] font-bold mb-4">Tuần Lễ SAMSUNG</p>
@@ -94,17 +83,20 @@ const Main = () => {
       <CarouselBlog />
       <Search />
       <ChatBot />
-      <Footer />
 
-      <div className="mx-auto max-w-[1200px] my-8">
-        {footerCards.map((card, idx) => (
-          <ListCard key={`footer-${idx}`} {...card} />
-        ))}
-      </div>
+      {listCards.map((card, idx) => (
+        <ListCard key={idx} {...card} />
+      ))}
 
       {loading && (
-        <div className="flex justify-center my-4">
-          <span className="ml-2 text-yellow-500 font-semibold">Đang tải thêm sản phẩm...</span>
+        <div className="max-w-[1200px] mx-auto grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-4 px-4 my-6">
+          {Array.from({ length: 12 }).map((_, idx) => (
+            <Skeleton.Button
+              key={idx}
+              active
+              style={{ width: "100%", height: 180, borderRadius: 8 }}
+            />
+          ))}
         </div>
       )}
     </div>
