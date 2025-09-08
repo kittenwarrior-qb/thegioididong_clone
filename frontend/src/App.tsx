@@ -4,6 +4,9 @@ import CartPage from "./pages/CartPage";
 import DetailPage from "./pages/DetailPage";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
+import CheckoutPage from "./pages/CheckoutPage";
+import AuthPage from "./pages/AuthPage";
+
 
 const App = () => {
   return (
@@ -13,6 +16,9 @@ const App = () => {
         <Route path="/" element={<HomePage/>} />
 
         <Route path="/cart" element={<CartPage />} />
+        <Route path="/checkout" element={<CheckoutPage />} />
+          <Route path="/auth" element={<AuthPage />} />
+
 
         <Route path="/detail/:id" element={<DetailPage />} />
       </Routes>

@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { CartService } from "../services/cart.service";
+import { Link } from "react-router-dom";
 
 const CartPage = () => {
   const [cart, setCart] = useState(CartService.getCart());
@@ -63,55 +64,61 @@ const CartPage = () => {
               >
                 Xóa
               </button>
-            <div className="flex flex-col items-end gap-2">
-              <div className="flex items-center border border-gray-200 rounded">
-                <button
-                  onClick={() =>
-                    handleQuantityChange(item.id, item.quantity - 1)
-                  }
-                  className="px-2 text-gray-600 hover:text-black"
-                >
-                  -
-                </button>
-                <input
-                  type="number"
-                  min={1}
-                  value={item.quantity}
-                  onChange={(e) =>
-                    handleQuantityChange(item.id, Number(e.target.value))
-                  }
-                  className="w-12 text-center border-none outline-none"
-                />
-                <button
-                  onClick={() =>
-                    handleQuantityChange(item.id, item.quantity + 1)
-                  }
-                  className="px-2 text-gray-600 hover:text-black"
-                >
-                  +
-                </button>
+              <div className="flex flex-col items-end gap-2">
+                <div className="flex items-center border border-gray-200 rounded">
+                  <button
+                    onClick={() =>
+                      handleQuantityChange(item.id, item.quantity - 1)
+                    }
+                    className="px-2 text-gray-600 hover:text-black"
+                  >
+                    -
+                  </button>
+                  <input
+                    type="number"
+                    min={1}
+                    value={item.quantity}
+                    onChange={(e) =>
+                      handleQuantityChange(item.id, Number(e.target.value))
+                    }
+                    className="w-12 text-center border-none outline-none"
+                  />
+                  <button
+                    onClick={() =>
+                      handleQuantityChange(item.id, item.quantity + 1)
+                    }
+                    className="px-2 text-gray-600 hover:text-black"
+                  >
+                    +
+                  </button>
+                </div>
               </div>
-            </div>
-
             </div>
           </div>
         ))}
       </div>
 
       <div className="flex mt-6  pt-4 justify-between">
-        <p  className="text-[14px]">
+        <p className="text-[14px]">
           Tạm tính ({CartService.getTotalQuantity()} sản phẩm):{" "}
         </p>
-        <p  className="text-[14px]">
-            {CartService.getTotalPrice().toLocaleString("vi-VN")}đ
+        <p className="text-[14px]">
+          {CartService.getTotalPrice().toLocaleString("vi-VN")}đ
         </p>
       </div>
 
-      <div className="mt-6 flex">
-        <button className="bg-[#FC7600] w-full text-white px-6 py-2 rounded-lg font-medium">
-          Đặt hàng
-        </button>
-      </div>
+<Link
+  to="/checkout"
+  state={{
+    total: CartService.getTotalPrice(),
+    products: cart // truyền danh sách sản phẩm luôn
+  }}
+>
+  <button className="bg-[#FC7600] w-full text-white px-6 py-2 rounded-lg font-medium">
+    Đặt hàng
+  </button>
+</Link>
+
     </div>
   );
 };

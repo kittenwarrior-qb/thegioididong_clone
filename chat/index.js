@@ -3,13 +3,49 @@ import http from "http";
 import { Server } from "socket.io";
 import cookie from "cookie";
 import dotenv from "dotenv";
+import mongoose from "mongoose";
+import authRoutes from "./routes/auth.js";
+import cors from "cors";
+
+dotenv.config();
+
 const app = express();
 const server = http.createServer(app);
-dotenv.config();
+
+app.use(express.json());
+
+mongoose.connect(process.env.MONGO_URI)
+  .then(() => console.log("MongoDB connected"))
+  .catch(err => console.error(err));
+
+  
+const allowedOrigins = [
+  "http://localhost:5173",
+  "https://thegioididong-clone-62sb.vercel.app",
+];
+
+
+app.use(cors({
+  origin: allowedOrigins,
+  credentials: true,
+}));
+app.use((req, res, next) => {
+  res.setHeader("Cross-Origin-Opener-Policy", "same-origin-allow-popups");
+  res.setHeader("Cross-Origin-Embedder-Policy", "unsafe-none");
+  next();
+});
+
+app.use("/api/auth", authRoutes);
 
 const io = new Server(server, {
   cors: {
-    origin: process.env.FRONTEND_URL,
+    origin: (origin, callback) => {
+      if (!origin || allowedOrigins.includes(origin)) {
+        callback(null, true);
+      } else {
+        callback(new Error("Not allowed by CORS"));
+      }
+    },
     credentials: true,
   },
 });
@@ -27,7 +63,6 @@ io.on("connection", (socket) => {
   socket.on("send_message", (data) => {
     const msg = { user: role, text: data.text };
     io.sockets.messages.push(msg);
-
     io.emit("receive_message", msg);
   });
 
