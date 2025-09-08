@@ -42,9 +42,9 @@ const CartPage = () => {
 
               <div className="w-full">
                 <div className="flex justify-between">
-                  <p className="text-[14px] text-[#dd2f2c]">{item.name}</p>
+                  <p className="text-[14px] ">{item.name}</p>
                   <div>
-                    <p className="text-[14px]">
+                    <p className="text-[14px] text-[#dd2f2c]">
                       {Number(item.price).toLocaleString("vi-VN")}đ
                     </p>
                     {item.priceOld && (
