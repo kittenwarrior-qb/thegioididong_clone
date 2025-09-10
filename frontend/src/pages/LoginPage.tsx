@@ -18,8 +18,8 @@ export default function Login() {
   const [loading, setLoading] = useState(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const socketUrl = import.meta.env.VITE_SOCKET_URL;
 
-  // 👇 cần thêm
   const [messageApi, contextHolder] = message.useMessage();
 
   const handleLogin = async (providerName: string) => {
@@ -35,7 +35,7 @@ export default function Login() {
       const token = await result.user.getIdToken();
       console.log("Firebase ID Token:", token);
 
-      const res = await axios.get("http://localhost:4000/api/auth", {
+      const res = await axios.get(`${socketUrl}/api/auth`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       console.log("Backend full response:", res);
@@ -75,7 +75,7 @@ export default function Login() {
         await linkWithPopup(oldUserResult.user, provider);
 
         const token = await oldUserResult.user.getIdToken();
-        const res = await axios.get("http://localhost:4000/profile", {
+        const res = await axios.get(`${socketUrl}/profile`, {
           headers: { Authorization: `Bearer ${token}` },
         });
 

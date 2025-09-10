@@ -23,6 +23,7 @@ const allowedOrigins = [
   "http://localhost:5173",
   "http://localhost",
   "https://your-production-domain.com",
+  "http://172.236.138.136"
 ];
 app.use(cors({ origin: allowedOrigins, credentials: true }));
 
