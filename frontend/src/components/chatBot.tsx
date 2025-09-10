@@ -1,4 +1,4 @@
-import logo4 from '../assets/tgdd/logo4.png'
+import logo4 from "../assets/tgdd/logo4.png";
 import { useEffect, useState, useRef } from "react";
 import io from "socket.io-client";
 const socketUrl = import.meta.env.VITE_SOCKET_URL;
@@ -57,16 +57,28 @@ const ChatBot = () => {
   return (
     <div className="fixed bottom-4 right-4 z-50 font-sans">
       {open ? (
-        <div className="w-[450px] h-[700px] bg-white shadow-lg rounded-xl flex flex-col overflow-hidden">
+        <div className="w-full max-w-[450px] h-[80vh] sm:h-[700px] sm:w-[450px] bg-white shadow-lg rounded-xl flex flex-col overflow-hidden">
+          {/* Header */}
           <div className="bg-[#4D4D4D] px-4 py-2 flex justify-between items-center rounded-t-xl">
-            <div className='bg-white p-2 rounded-full'><img src={logo4} width={20} height={20} /></div>
-            <span className="font-semibold text-[18px] text-white">Thế giới di động</span>
-            <button onClick={() => setOpen(false)} className="text-gray-700 font-bold">
+            <div className="bg-white p-2 rounded-full">
+              <img src={logo4} width={20} height={20} />
+            </div>
+            <span className="font-semibold text-[18px] text-white">
+              Thế giới di động
+            </span>
+            <button
+              onClick={() => setOpen(false)}
+              className="text-white font-bold hover:text-gray-300"
+            >
               ✕
             </button>
           </div>
 
-          <div ref={scrollRef} className="flex-1 p-3 space-y-2 overflow-y-auto bg-gray-50">
+          {/* Messages */}
+          <div
+            ref={scrollRef}
+            className="flex-1 p-3 space-y-2 overflow-y-auto bg-gray-50"
+          >
             {messages.map((msg, i) => (
               <div
                 key={i}
@@ -75,7 +87,9 @@ const ChatBot = () => {
                 } items-start`}
               >
                 {msg.user === "admin" && (
-                  <div className='bg-white p-2 rounded-full mt-1'><img src={logo4} width={16} height={16} /></div>
+                  <div className="bg-white p-2 rounded-full mt-1">
+                    <img src={logo4} width={16} height={16} />
+                  </div>
                 )}
                 <div
                   className={`p-2 rounded-lg max-w-[70%] break-words ${
@@ -90,6 +104,7 @@ const ChatBot = () => {
             ))}
           </div>
 
+          {/* Input */}
           <div className="p-2 border-t border-gray-200 flex gap-2 items-center">
             <button className="p-2 rounded hover:bg-gray-200 ">
               <svg

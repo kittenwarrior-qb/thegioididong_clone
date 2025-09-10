@@ -40,7 +40,7 @@ const Main = () => {
   return (
     <div>
       <AdBanner />
-      <ListCard title="Khuyến mãi Online" tab={true} />
+      <ListCard title="Khuyến mãi nnline" tab={true} />
       <ListCard title="Gợi ý cho bạn" tab={false} tabKey="Điện thoại" />
 
       <CarouselBanner />

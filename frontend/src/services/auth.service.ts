@@ -38,23 +38,6 @@ export const loginWithUsername = async (username: string, password: string): Pro
   }
 };
 
-export const loginWithGoogle = async (credential: string): Promise<LoginResponse> => {
-  try {
-    const { data } = await api.post("/api/auth/google", { credential });
-
-    if (data.success && data.data) {
-      localStorage.setItem("accessToken", data.data.accessToken);
-      localStorage.setItem("refreshToken", data.data.refreshToken);
-        localStorage.setItem("user", JSON.stringify(data.data.user));
-
-    }
-
-    return data;
-  } catch (error: any) {
-    return { success: false, message: error.response?.data?.message || "Đăng nhập Google thất bại." };
-  }
-};
-
 export const logout = () => {
   localStorage.removeItem("accessToken");
   localStorage.removeItem("refreshToken");

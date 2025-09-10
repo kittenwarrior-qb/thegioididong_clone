@@ -23,65 +23,25 @@ import { CartService } from "../services/cart.service";
 import { getUser, logout } from "../services/auth.service";
 
 const categories = [
-  {
-    id: 1,
-    name: "Điện thoại",
-    icon: Phone_Icon,
-    children: ["iPhone", "Samsung", "Xiaomi", "OPPO"],
-  },
-  {
-    id: 2,
-    name: "Laptop",
-    icon: Laptop_Icon,
-    children: ["Macbook", "Asus", "Lenovo", "HP"],
-  },
-  {
-    id: 3,
-    name: "Phụ kiện",
-    icon: Asset_Icon,
-    children: ["Tai nghe", "Sạc dự phòng", "Ốp lưng", "Cáp sạc"],
-    angle: true,
-  },
-  {
-    id: 4,
-    name: "Smartwatch",
-    icon: SmartWatch_Icon,
-    children: ["Apple Watch", "Samsung Watch", "Huawei Watch"],
-  },
+  { id: 1, name: "Điện thoại", icon: Phone_Icon, children: ["iPhone", "Samsung", "Xiaomi", "OPPO"] },
+  { id: 2, name: "Laptop", icon: Laptop_Icon, children: ["Macbook", "Asus", "Lenovo", "HP"] },
+  { id: 3, name: "Phụ kiện", icon: Asset_Icon, children: ["Tai nghe", "Sạc dự phòng", "Ốp lưng", "Cáp sạc"], angle: true },
+  { id: 4, name: "Smartwatch", icon: SmartWatch_Icon, children: ["Apple Watch", "Samsung Watch", "Huawei Watch"] },
   { id: 5, name: "Đồng hồ", icon: Watch_Icon },
-  {
-    id: 6,
-    name: "Tablet",
-    icon: Tablet_Icon,
-    children: ["iPad", "Samsung Tab", "Xiaomi Pad"],
-  },
+  { id: 6, name: "Tablet", icon: Tablet_Icon, children: ["iPad", "Samsung Tab", "Xiaomi Pad"] },
   { id: 7, name: "Máy cũ, Thu cũ", icon: Old_Icon, angle: true },
-  {
-    id: 8,
-    name: "Màn hình, Máy in",
-    icon: PC_Icon,
-    angle: true,
-    children: ["Màn hình LG", "Màn hình Dell", "Máy in Canon", "Máy in HP"],
-  },
+  { id: 8, name: "Màn hình, Máy in", icon: PC_Icon, angle: true, children: ["Màn hình LG", "Màn hình Dell", "Máy in Canon", "Máy in HP"] },
   { id: 9, name: "Sim, Thẻ cào", icon: Sim_Icon, angle: true },
   { id: 10, name: "Dịch vụ tiện ích", icon: Service_Icon, angle: true },
 ];
 
-const MiddleBlock = ({
-  cartQuantity,
-  user,
-  onLogout,
-}: {
-  cartQuantity: number;
-  user: { username?: string } | null;
-  onLogout: () => void;
-}) => (
-  <div className="max-w-[1200px] mx-auto flex flex-col md:flex-row justify-between items-center py-2">
-    <Link to="/">
-      <img src={LogoImg} width={228} height={40} alt="logo" />
+const MiddleBlock = ({ cartQuantity, user, onLogout, className }: { cartQuantity: number;className?:string ; user: { username?: string } | null; onLogout: () => void } ) => (
+  <div className={`max-w-[1200px] h-auto mx-auto flex  md:flex-row gap-2 justify-between items-center pt-2 ${className}`}>
+    <Link to="/" className="flex-shrink-0">
+      <img className="w-[180px] md:w-[235px] h-auto" src={LogoImg} alt="logo" />
     </Link>
 
-    <div className="flex items-center bg-white rounded-full px-3 w-full md:max-w-[415px] h-[40px]">
+    <div className="flex items-center bg-white flex-1 rounded-full py-4 md:py-0 px-3 w-full md:w-[400px] h-[40px] mt-2 md:mt-0">
       <img src={SearchIcon} width={17} height={17} alt="search" />
       <input
         type="text"
@@ -90,57 +50,44 @@ const MiddleBlock = ({
       />
     </div>
 
-    <div className="flex w-full items-center gap-2 ml-10">
+    <div className="flex items-center gap-3 mt-2 md:mt-0">
       {user ? (
         <>
           <div className="flex items-center gap-1 cursor-pointer hover:bg-[#ffe565] py-2 px-2 rounded-full">
             <img src={UserIcon} width={24} height={24} alt="user" />
             <span className="text-[14px] hidden md:block">{user.username}</span>
           </div>
-          <div className="flex items-center gap-1 cursor-pointer hover:bg-[#ffe565] py-2 px-2 rounded-full">
-            <button
-              onClick={onLogout}
-              className="text-xs ml-2 underline hidden md:block"
-            >
-              Logout
-            </button>
-          </div>
+          <button onClick={onLogout} className="text-xs ml-2 underline hidden md:block">Logout</button>
         </>
       ) : (
-        <Link
-          to="/auth"
-          className="flex items-center gap-1 cursor-pointer hover:bg-[#ffe565] py-2 px-2 rounded-full  min-w-[120px]"
-        >
+        <Link to="/login" className="flex items-center gap-1 cursor-pointer hover:bg-[#ffe565] py-2 pr-2 rounded-full ml-3">
           <img src={UserIcon} width={24} height={24} alt="user" />
-          <span className="text-[14px] hidden md:block ">Đăng nhập</span>
+          <span className="text-[14px] hidden md:block">Đăng nhập</span>
         </Link>
       )}
 
-      <Link
-        to="/cart"
-        className="relative flex items-center gap-1 cursor-pointer hover:bg-[#ffe565] py-2 px-2 rounded-full  min-w-[120px]"
-      >
+      <Link to="/cart" className="relative flex items-center gap-1 cursor-pointer hover:bg-[#ffe565] py-2 px-2 rounded-full">
         <img src={CartIcon} width={24} height={24} alt="cart" />
         <p className="text-[14px] hidden md:block">Giỏ hàng</p>
-
         {cartQuantity > 0 && (
-          <span className="absolute top-[10px] left-[14px] bg-red-600 text-white text-[10px] w-3 h-3 flex items-center justify-center rounded-full">
+          <span className="absolute top-[9px] left-[15px] bg-red-600 text-white text-[10px] w-3 h-3 flex items-center justify-center rounded-full">
             {cartQuantity}
           </span>
         )}
       </Link>
 
-      <Location />
+      <div className="hidden md:block">
+        <Location />
+      </div>
     </div>
   </div>
 );
 
 const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
-  const [cartQuantity, setCartQuantity] = useState(
-    CartService.getTotalQuantity()
-  );
+  const [cartQuantity, setCartQuantity] = useState(CartService.getTotalQuantity());
   const [user, setUser] = useState<{ username?: string } | null>(getUser());
+  const [menuOpen, setMenuOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => setIsScrolled(window.scrollY > 200);
@@ -161,54 +108,36 @@ const Header = () => {
   const handleLogout = () => {
     logout();
     setUser(null);
-    window.location.href = "/auth";
+    window.location.href = "/login";
   };
 
   return (
     <>
-      <div
-        className={`bg-[#ffd500] transition-all duration-300 ${
-          isScrolled ? "opacity-0 pointer-events-none" : "opacity-100"
-        }`}
-      >
-        <div className="bg-[#FFE800] h-[44px]">
+      {/* Banner + Middle block */}
+      <div className={`bg-[#ffd500] transition-all duration-300 ${isScrolled ? "opacity-0 pointer-events-none" : "opacity-100"}`}>
+        <div className="bg-[#ffd500] h-[44px] hidden md:block">
           <img
-            src="//cdnv2.tgdd.vn/mwg-static/tgdd/Banner/e9/dd/e9dd22f72466a1a606868c749e029330.png"
+            src="https://cdnv2.tgdd.vn/mwg-static/tgdd/Banner/b4/59/b45940d7746f137d6b2dfd2268f02607.png"
             className="w-full max-w-[1200px] mx-auto h-[44px] object-cover"
             alt="top-banner"
           />
         </div>
 
-        <MiddleBlock
-          cartQuantity={cartQuantity}
-          user={user}
-          onLogout={handleLogout}
-        />
+        <MiddleBlock cartQuantity={cartQuantity} user={user} onLogout={handleLogout} />
 
-        <div className="px-2 max-w-[1240px] mx-auto flex justify-between items-center h-[44px]">
+        {/* Desktop categories */}
+        <div className="px-2 pt-1 max-w-[1240px] mx-auto hidden md:flex justify-between items-center h-[44px]">
           {categories.map((cat) => (
             <div key={cat.id} className="relative group">
               <div className="flex items-center gap-1 cursor-pointer hover:bg-[#ffe565] px-3 py-2 rounded-t-lg whitespace-nowrap">
                 <img src={cat.icon} width={20} height={20} alt={cat.name} />
                 <span className="text-[14px]">{cat.name}</span>
-                {cat.angle && (
-                  <img
-                    src={Angle_Icon}
-                    width={8}
-                    height={8}
-                    className="rotate-270"
-                    alt="angle"
-                  />
-                )}
+                {cat.angle && <img src={Angle_Icon} width={8} height={8} className="rotate-270" alt="angle" />}
               </div>
               {cat.children && (
                 <div className="absolute top-full left-0 bg-white shadow-md rounded hidden group-hover:block z-50 min-w-[150px]">
                   {cat.children.map((child) => (
-                    <Link
-                      key={child}
-                      to={`/${child.toLowerCase()}`}
-                      className="block px-3 py-2 text-sm hover:bg-gray-100"
-                    >
+                    <Link key={child} to={`/${child.toLowerCase()}`} className="block px-3 py-2 text-sm hover:bg-gray-100">
                       {child}
                     </Link>
                   ))}
@@ -217,15 +146,27 @@ const Header = () => {
             </div>
           ))}
         </div>
+
+        <div className="md:hidden px-2 py-2">
+          <button onClick={() => setMenuOpen(!menuOpen)} className="px-3 py-2 bg-white rounded-lg shadow">
+            Menu
+          </button>
+          {menuOpen && (
+            <div className="grid grid-cols-2 gap-2 mt-2 bg-white rounded-lg p-3 shadow">
+              {categories.map((cat) => (
+                <Link key={cat.id} to={`/${cat.name.toLowerCase()}`} className="flex items-center gap-2 text-sm hover:bg-gray-100 px-2 py-1 rounded">
+                  <img src={cat.icon} width={20} height={20} alt={cat.name} />
+                  {cat.name}
+                </Link>
+              ))}
+            </div>
+          )}
+        </div>
       </div>
 
       {isScrolled && (
         <div className="sticky top-0 bg-[#ffd500] z-50 shadow-md">
-          <MiddleBlock
-            cartQuantity={cartQuantity}
-            user={user}
-            onLogout={handleLogout}
-          />
+          <MiddleBlock className="pb-2" cartQuantity={cartQuantity} user={user} onLogout={handleLogout} />
         </div>
       )}
     </>

@@ -4,47 +4,57 @@ import { Server } from "socket.io";
 import cookie from "cookie";
 import dotenv from "dotenv";
 import mongoose from "mongoose";
-import authRoutes from "./routes/auth.js";
 import cors from "cors";
+import admin from "./config/firebase.js"; 
+import { verifyFirebaseToken } from "./middlewares/verifyFirebaseToken.js";
 
 dotenv.config();
 
+import authRoutes from "./routes/auth.js";
+
 const app = express();
 const server = http.createServer(app);
-
-app.use(express.json());
 
 mongoose.connect(process.env.MONGO_URI)
   .then(() => console.log("MongoDB connected"))
   .catch(err => console.error(err));
 
-  
 const allowedOrigins = [
   "http://localhost:5173",
-  "https://thegioididong-clone-62sb.vercel.app",
+  "http://localhost",
+  "https://your-production-domain.com",
 ];
+app.use(cors({ origin: allowedOrigins, credentials: true }));
 
-
-app.use(cors({
-  origin: allowedOrigins,
-  credentials: true,
-}));
 app.use((req, res, next) => {
   res.setHeader("Cross-Origin-Opener-Policy", "same-origin-allow-popups");
   res.setHeader("Cross-Origin-Embedder-Policy", "unsafe-none");
   next();
 });
 
-app.use("/api/auth", authRoutes);
+app.use(express.json());
+
+app.use("/api", authRoutes);
+
+app.get("/api/profile", verifyFirebaseToken, async (req, res) => {
+  try {
+    const customToken = await admin.auth().createCustomToken(req.user.uid);
+    res.json({
+      message: "Welcome!",
+      user: req.user,
+      idToken: req.idToken,
+      customToken,
+    });
+  } catch (err) {
+    res.status(500).json({ message: "Server error", error: err.message });
+  }
+});
 
 const io = new Server(server, {
   cors: {
     origin: (origin, callback) => {
-      if (!origin || allowedOrigins.includes(origin)) {
-        callback(null, true);
-      } else {
-        callback(new Error("Not allowed by CORS"));
-      }
+      if (!origin || allowedOrigins.includes(origin)) callback(null, true);
+      else callback(new Error("Not allowed by CORS"));
     },
     credentials: true,
   },
@@ -71,4 +81,4 @@ io.on("connection", (socket) => {
   });
 });
 
-server.listen(4000, () => console.log("Socket server running on 4000"));
+server.listen(4000, () => console.log("Server running on http://localhost:4000"));

@@ -36,18 +36,27 @@ body {
   padding: 0px 25px;
   transition: none;
   height: 60px;
+  font-weight: 400 !important;
+
+}
+
+.custom-tabs .ant-tabs-tab-active .ant-tabs-tab-btn {
+  font-weight: 400 !important;
+
 }
 .custom-tabs .ant-tabs-tab-active {
   background-color: #fff6e3;
 }
 
 .custom-tabs .ant-tabs-tab-active .ant-tabs-tab-btn {
-  color: black !important;
-  font-weight: 600;
+  color: rgb(32, 32, 32) !important;
+  font-weight: 400 !important;
 }
-
-.custom-tabs .ant-tabs-tab-btn:hover {
-  color: inherit !important; 
+.ant-tabs-tab-btn:hover {
+  color: none
+}
+.custom-tabs .ant-tabs-tab:hover {
+  color: black !important;
 }
 
 .custom-tabs .ant-tabs-ink-bar {

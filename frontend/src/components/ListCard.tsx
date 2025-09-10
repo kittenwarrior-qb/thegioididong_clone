@@ -3,7 +3,7 @@ import { Tabs } from "antd";
 import { ApiService } from "../services/api";
 import { type Product } from "../types/product";
 import ProductCard from "./ProductCard";
-import FlashSaleBanner from "../assets/tgdd/Screenshot 2025-09-04 162633.png";
+import FlashSaleBanner from "../assets/tgdd/Screenshot 2025-09-10 104147.png";
 
 interface ListCardProps {
   title: string;
@@ -16,7 +16,7 @@ const TAB_CATEGORIES = [
   {
     key: "flashsale",
     name: "FlashSale",
-    img: "https://cdnv2.tgdd.vn/mwg-static/common/Campaign/10/0d/100d3018ffd23afe20324b164d0412cc.png",
+    img: "https://cdnv2.tgdd.vn/mwg-static/common/Campaign/53/d3/53d33414879decc07afd80aedbb6a8e1.png",
     banner: FlashSaleBanner,
   },
   {
@@ -98,7 +98,7 @@ const ListCard = ({ title, tab = true, tabKey, img }: ListCardProps) => {
         {banner && (
           <img
             src={banner}
-            className="w-full rounded-lg object-cover p-4"
+            className="w-full rounded-lg object-cover p-4 !py-0"
             alt="banner"
           />
         )}

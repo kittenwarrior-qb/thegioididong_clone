@@ -10,7 +10,7 @@ services:
       - backend
 
   backend:
-    build: ./chat
+    build: ./backend
     container_name: node_backend
     ports:
       - "4000:4000"
