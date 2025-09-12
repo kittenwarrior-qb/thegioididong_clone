@@ -23,6 +23,7 @@ const allowedOrigins = [
   "http://localhost:5173",
   "http://localhost",
   "http://172.236.138.136",
+  "https://172.236.138.136",
   "http://thegioididongclone.duckdns.org",
   "https://thegioididongclone.duckdns.org"
 ];
