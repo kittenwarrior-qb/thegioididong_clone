@@ -16,7 +16,7 @@ jobs:
           password: ${{ secrets.PASSWORD }}
           port: 22
           script: |
-            cd /services/thegioididong
+            cd /root/services/thegioididong
             git fetch origin
             git checkout production
             git pull
