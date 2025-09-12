@@ -1,0 +1,25 @@
+name: Vite Deployment
+
+on:
+  push:
+    branches: [production] 
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: SSH Deploy
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
+          password: ${{ secrets.PASSWORD }}
+          port: 22
+          script: |
+            cd /repository/thegioididong
+            git fetch origin
+            git checkout production
+            git pull
+            docker-compose down
+            docker-compose build
+            docker-compose up -d
