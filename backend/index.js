@@ -22,7 +22,9 @@ mongoose.connect(process.env.MONGO_URI)
 const allowedOrigins = [
   "http://localhost:5173",
   "http://localhost",
-  "http://172.236.138.136"
+  "http://172.236.138.136",
+  "http://thegioididongclone.duckdns.org",
+  "https://thegioididongclone.duckdns.org"
 ];
 app.use(cors({ origin: allowedOrigins, credentials: true }));
 
