@@ -5,6 +5,7 @@ WORKDIR /app
 # Copy package.json và cài dependencies (bao gồm pm2)
 COPY package*.json ./
 RUN npm install --production
+RUN npm install pm2 -g
 
 # Copy toàn bộ code
 COPY . .
