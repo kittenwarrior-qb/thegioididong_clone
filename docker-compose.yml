@@ -11,6 +11,8 @@ services:
   frontend:
     build: ./frontend
     container_name: vite_frontend
+    volumes:
+      - ./frontend/dist:/usr/share/nginx/html
     depends_on:
       - backend
 
